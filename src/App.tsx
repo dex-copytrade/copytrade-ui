@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Page1 from "./pages/page1";
-import Page2 from "./pages/page2";
+import Home from "./pages/home";
+import TraderList from "./pages/traderList";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./index.less";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,20 +10,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/page1" element={<Page1 />}>  </Route>
-        <Route path="/page2" element={<Page2 />}>  </Route>
-       
+        <Route path="/home" element={<Home />}>  </Route>
+        <Route path="/traderlist" element={<TraderList />}>  </Route>
       </Routes>
-
-      {/* <Routes>
-        {routes.map(({ path, component: RouteComp, async }) => {
-          return (
-            <Route key={path} path={path}>
-              <RouteComp />
-            </Route>
-          );
-        })}
-      </Routes> */}
     </div>
   );
 }
