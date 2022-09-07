@@ -17,12 +17,16 @@ const HeaderComponents: FC = () => {
   // Connect the solana wallet Tested with Phantom
   function btnConnectClick() {
     try {
-      window.solana.connect().then((resp: any) => {
-        const publicKey = resp.publicKey.toString();
-        setPublicKey(publicKey);
-        localStorage.setItem('owner', publicKey);
-        signIn();
-      });
+      if (window.solana) {
+        window.solana.connect().then((resp: any) => {
+          const publicKey = resp.publicKey.toString();
+          setPublicKey(publicKey);
+          localStorage.setItem('owner', publicKey);
+          signIn();
+        });
+      } else {
+        alert('请先安装 phantom 钱包');
+      }
     } catch (error) {
       console.log('User rejected the request.' + error);
     }
