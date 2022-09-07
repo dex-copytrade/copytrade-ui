@@ -1,5 +1,5 @@
 // 统一对 get 方法进行封装
-import { Modal } from "antd";
+import { Modal } from 'antd';
 
 // import { loginLark } from ".";
 
@@ -21,18 +21,18 @@ const resCheck = (res: any) => {
   }
 };
 
-const baseUrl = "";
+const baseUrl = '';
 export const get = async (url: string, data = {}) => {
   try {
     // 拼接 get 请求参数
-    let query = "?" + new URLSearchParams(data).toString()
-    console.log(new URLSearchParams(data).toString())
+    let query = '?' + new URLSearchParams(data).toString();
+    console.log(new URLSearchParams(data).toString());
     // 发送异步请求
     const response = await fetch(`${baseUrl}${url}${query}`, {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token") || "",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        owner: localStorage.getItem('owner') || '',
       },
     });
     const res = await response.json();
@@ -47,12 +47,12 @@ export const get = async (url: string, data = {}) => {
 export const post = async (url: string, data = {}) => {
   try {
     const response = await fetch(baseUrl + url, {
-      method: "POST", // 默认为 GET 请求
+      method: 'POST', // 默认为 GET 请求
       body: JSON.stringify(data),
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token") || "",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        owner: localStorage.getItem('owner') || '',
       },
     });
     const res = await response.json();
