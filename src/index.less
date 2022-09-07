@@ -8,11 +8,16 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #121214;
   text-decoration: inherit;
 }
-a:hover {
-  color: #535bf2;
+a:hover{
+  color: none;
+}
+ul,li{
+  list-style: none;
+  margin: 0;
+  padding: 0
 }
 
 h1 {
@@ -25,6 +30,72 @@ em {
 }
 p {
   margin: 0;
+}
+
+.g-df >div{
+  flex: 1;
+  color: #999;
+  p{
+    font-size: 18px;
+    font-weight: 600;
+    color: #121214;
+  }
+}
+
+.g-df{
+  &.pm{
+    margin: 0 24px -10px;
+    padding: 14px 0;
+  }
+  ul{
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap;
+    li{
+      width: 50%;
+      color: #999;
+      margin-top: 10px;
+      &:nth-child(even){
+        text-align: right;
+      }
+      p{
+        font-size: 18px;
+        font-weight: 600;
+        color: #121214;
+      }
+    }
+  }
+  
+  
+}
+
+.g-list{
+  .lh32{
+    line-height: 32px;
+  }
+  .lh22{
+    line-height: 22px;
+  }
+  li{
+    display: flex;
+    align-items: center;
+    color: #999;
+    p{
+      flex: 1;
+      text-align: right;
+      font-weight: bold;
+      color: #121214;
+    }
+  }
+}
+
+.goback{
+  padding: 38px 0 24px;
+  cursor: pointer;
+  .anticon{
+      font-size: 12px;
+      margin-right: 12px;
+  }
 }
 
 .fs14 {
@@ -56,6 +127,17 @@ p {
   font-weight: 600;
 }
 
+.pad24{
+  padding: 24px;
+}
+
+.pdtr1624{
+  padding: 16px 24px;
+}
+
+.pb24{
+  padding-bottom: 24px;
+}
 .pb10{
   padding-bottom: 10px;
 }
@@ -72,6 +154,9 @@ p {
 .mt20{
   margin-top: 20px;
 }
+.mr16{
+  margin-right: 16px;
+}
 
 .lh32{
   line-height: 32px;
@@ -80,11 +165,21 @@ p {
 .c-black{
   color: #121214;
 }
+.c999{
+  color: #999 !important;
+}
 .c-orange{
   color: #F7A600
 }
 .c-green {
-  color: #20B26C
+  color: #20B26C !important
+}
+.c-red {
+  color: #EF454A !important
+}
+
+.bb{
+  border-bottom: 1px solid #E9EDF2;;
 }
 
 .content-wrap{
@@ -95,7 +190,7 @@ p {
 // 公共按钮
 .btn {
   font-size: 14px;
-  padding: 5px 12px;
+  padding: 5px 16px;
   color: #fff;
   border-radius: 4px;
   text-align: center;
@@ -106,6 +201,10 @@ p {
   &.large{
     line-height: 30px;
   }
+  &.small{
+    font-size: 12px;
+    font-weight: 400;
+  }
   &.primary {
     font-weight: 600;
     background: linear-gradient(90deg, #FFB82A 0%, #FF25B5 100%);
@@ -114,7 +213,17 @@ p {
     border: 1px solid #D5DAE0;
     color: #121214;
   }
+  &.line2{
+    border: 1px solid #FF25B5;
+    color: #FF25B5;
+  }
   &.text{
     color: #F7A600;
   }
 }
+
+.br8{
+  border-radius: 8px;
+  background: #fff;
+}
+

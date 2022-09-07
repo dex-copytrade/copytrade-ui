@@ -8,17 +8,18 @@ import "antd/dist/antd.css";
 import './index.less'
 import { get } from "../../utils/http";
 
-const { TabPane } = Tabs;
-const { Search } = Input;
-
-const onChange = (key: any) => {
-  console.log(key);
-};
-
-const operations = <div className="btn line"><UserSwitchOutlined />我的跟单&nbsp;<ArrowRightOutlined style={{color: '#F7A600' }}/></div>;
-const onSearch = (value: string) => console.log(value);
 
 const TraderList: FC = () => {
+  const { TabPane } = Tabs;
+  const { Search } = Input;
+
+  const onChange = (key: any) => {
+    console.log(key);
+  };
+
+  const operations = <div className="btn line"><UserSwitchOutlined />我的跟单&nbsp;<ArrowRightOutlined style={{color: '#F7A600' }}/></div>;
+  const onSearch = (value: string) => console.log(value);
+
   const info = async () => {
     const data = await get('/api/subList/info')
   }
@@ -54,7 +55,8 @@ const TraderList: FC = () => {
             ></CardItem>
           </TabPane>
           <TabPane tab="我的订阅" key="2">
-            Content of Tab Pane 2
+            {false ? "暂无数据":<CardItem isHasMore={false}
+            ></CardItem>}
           </TabPane>
         </Tabs>
       </div>
