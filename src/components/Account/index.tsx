@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+<<<<<<< HEAD
 import { useLocation } from "react-router-dom";
 import './index.less'
 
@@ -18,14 +19,26 @@ export interface propsMode {
 export const CardItem: FC<propsMode> = (props) => {
   const { data } = props;
  
+=======
+import SubModal from '../Modal'
+import './index.less'
+
+export const CardItem: FC = () => {
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
+>>>>>>> ed42316620ed45e464c823aeb9e39d42aac016d3
   return (
+    <>
     <div className="br8 asset-wrap pad24">
       <div className="df">
         <div className="f1 df aic">
           <div className="fw fs18 mr16">{format(data.account)}</div>
           <div className="c999">累计收益总排行&nbsp;<span className="fw c-black">No.03</span></div>
         </div>
-        <div className="btn line2 mr16">订阅</div>
+        <div className="btn line2 mr16" onClick={()=>setIsModalOpen(true)}>订阅</div>
         <div className="btn primary">跟单</div>
       </div>
       <div className="g-df df list">
@@ -34,6 +47,11 @@ export const CardItem: FC<propsMode> = (props) => {
         <div>当前跟单人数<p>{data.copyCount}</p></div>
       </div>
     </div>
+    <SubModal 
+      isOpen={isModalOpen} 
+      account='CQ3232432...323'
+      handleCancel={handleCancel}></SubModal>
+    </>
   )
 };
 
