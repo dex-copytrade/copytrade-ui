@@ -68,7 +68,7 @@ const HeaderComponents: FC = () => {
   return (
     <div className='header-warp df aic'>
       <div className='f1  fs18 fw'>
-        <p className='logo'>DEX Copy Trading</p>
+        <p className='logo'>Bitverse DEX Copytrading</p>
       </div>
       {publicKey ? (
         <div style={{ color: 'white' }}>{formatPublicKey(publicKey)}</div>

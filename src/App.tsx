@@ -12,10 +12,17 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />}>  </Route>
-        <Route path="/traderlist" element={<TraderList />}>  </Route>
+        {/* <Route path="/" element={<Home />}>  </Route> */}
+        <Route path="/" element={<TraderList />}>
+          {" "}
+        </Route>
+        <Route path="/traderlist" element={<TraderList />}>
+          {" "}
+        </Route>
         <Route path="/traderdetail" element={<TraderDetail />}>  </Route>
-        <Route path="/translog" element={<TransLog />}>  </Route>
+        <Route path="/translog" element={<TransLog />}>
+          {" "}
+        </Route>
       </Routes>
     </div>
   );

@@ -1,15 +1,23 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import Header from '../../components/Header'
 import Account from '../../components/Account'
 import { LeftOutlined } from '@ant-design/icons';
 import './index.less'
 import { get } from "../../utils/http";
+import { useLocation } from 'react-router'
 
 
 const TraderList: FC = () => {
 
-  const info = async () => {
-    const data = await get('/api/subList/info')
+  const location = useLocation()
+
+  const [account] = useState<any>(() => location.search.split('=')[1] )
+  const [data, setDate] = useState<any>({})
+
+
+  const getDetail = async () => {
+    const data = await get('/api/tradeTalent/detail', { account })
+    setDate(data)
   }
 
   const gotoBack= () =>{
@@ -17,7 +25,7 @@ const TraderList: FC = () => {
   }
 
   useEffect(() => {
-    info()
+    getDetail()
   }, [])
 
   return (
@@ -25,7 +33,7 @@ const TraderList: FC = () => {
       <Header></Header>
       <div className="content-wrap">
         <div className="goback fs24 df f1 aic" onClick={gotoBack}><LeftOutlined />交易达人</div>
-        <Account></Account>
+        <Account data={data}></Account>
         <div className="df mt20 pb24">
           <div className="left-wrap br8">
             <div className="fw bb pdtr1624">收益概览</div>
@@ -33,8 +41,8 @@ const TraderList: FC = () => {
               <ul>
                 <li>近7天收益率<p className="c-green">322</p></li>
                 <li>累计交易收益<p className="c-green">+50%</p></li>
-                <li>最大回撤<p>8723</p></li>
-                <li>累计跟单收益额<p className="c-red">3323</p></li>
+                <li>最大回撤<p>{Number(Number(data.drawdownRate).toFixed(2)) * 100}%</p></li>
+                <li>累计跟单收益额<p className="c-red">{Number(data.totalRevenue).toFixed(2)}</p></li>
               </ul>
             </div>
             <div className="g-list pad24">
