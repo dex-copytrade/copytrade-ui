@@ -1,0 +1,65 @@
+.traderlist-page{
+    .banner-wrap{
+      position: relative;
+      height: 312px;
+      margin-bottom: 20px;
+      color: #fff;
+      border-radius: 0 0 100% 100%;
+      overflow: hidden;
+      .bg{
+        z-index: 0;
+        position: absolute;
+        left: -5%;
+        width: 110%;
+        height: 100%;
+        background: linear-gradient(90deg, #FFB82A 0%, #FF25B5 100%);
+      }
+      .title{
+        font-size: 50px;
+        position: absolute;
+        z-index: 1;
+        top: 106px;
+        font-weight: 900;
+        width: 1094px;
+        left: 50%;
+        transform: translateX(-50%);
+        p{
+          font-size: 170px;
+          font-weight: 900;
+          opacity: 0.12;
+          margin-top: -70px;
+        }
+      }
+      .ant-input-search{
+        z-index: 3;
+        position: absolute;
+        top: 70px;
+        right: 300px;
+        .ant-btn,
+        .ant-input{
+          border: solid 1px #fff
+        }
+        .ant-input{
+          width: 280px;
+          height: 40px;
+        }
+      }
+    }
+    .ant-tabs-nav{
+      margin-bottom: 34px;
+      &::before{
+        border-bottom:solid 1px rgba(213, 218, 224, 1)
+      }
+    }
+    .ant-tabs-tab{
+      font-size: 26px;
+      font-weight: 600;
+      color: #ADB1B8;
+      &.ant-tabs-tab-active .ant-tabs-tab-btn{
+        color: #121214;
+      }
+    }
+    .ant-tabs-ink-bar{
+      display: none
+    }
+  }
