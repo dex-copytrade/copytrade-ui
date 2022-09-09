@@ -2,6 +2,7 @@ import { Radio, Modal } from 'antd';
 import { FC, useState } from "react";
 import type { RadioChangeEvent } from 'antd';
 import './index.less'
+import { hanlderJump } from '../../utils';
 
 export interface ItemProps {
   isOpen: boolean
@@ -14,11 +15,7 @@ export const SubModal:FC<ItemProps> = (props) => {
   let { isOpen, isFisrtSub, account, handleCancel=() => void 0} = props
 
   const [value, setValue] = useState(1);
-
-  const handleGotoSub = () =>{
-    window.location.href = '/traderlist'
-  }
-
+  
   const onChange = (e: RadioChangeEvent) => {
     setValue(e.target.value);
   };
@@ -32,7 +29,7 @@ export const SubModal:FC<ItemProps> = (props) => {
         footer={[
           <div className='df'>
             <div className="f1 btn line large mr16" onClick={handleCancel}>取消</div>
-            <div className="f1 btn primary large" onClick={handleGotoSub}>确认</div>
+            <div className="f1 btn primary large" onClick={()=>hanlderJump('traderlist',{tab:'sub'})}>确认</div>
           </div>
         ]}
       >

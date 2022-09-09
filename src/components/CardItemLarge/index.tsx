@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { hanlderJump } from "../../utils";
 import './index.less'
 
 const format = (str: string) => {
@@ -14,21 +15,18 @@ export interface ItemProps {
 
 export const CardItem: FC<ItemProps> = (props) => {
   const { firstTitle, secondTitle, list } = props
-  const gotoDetail = (id:any) =>{
-    window.location.href = `/traderdetail?id=${id}`
-  }
 
   const listItme = () => {
     return list.map((item, index) => {
       return (
-        <div className="carditem" key={item.account} onClick={()=>gotoDetail(item.account)}>
+        <div className="carditem" key={item.account} onClick={()=>hanlderJump('traderdetail',{id: item.account})}>
           <div className="fs20 fw c-black name" >
             <label>No.0{index + 1}</label>
             <div className="bg-icon">{format(item.account)}</div>
           </div>
           <div className="df mb24 plr24">
-            <div>总盈利收益<p className="fs24 c-green" style={{marginRight: 114}}>{Number(item.profitSettlements).toFixed(2)}</p></div>
-            <div>近7天胜率<p className="fs24 c-green">{item.winRate * 100}%</p></div>
+            <div>总盈利收益<p className="fs24 fw c-green" style={{marginRight: 114}}>{Number(item.profitSettlements).toFixed(2)}</p></div>
+            <div>近7天胜率<p className="fs24 fw c-green">{item.winRate * 100}%</p></div>
           </div>
           <div className="g-df df plr24">
             <div>累计跟单总人数<p>{item.copyCount}</p></div>

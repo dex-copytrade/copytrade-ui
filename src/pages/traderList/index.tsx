@@ -7,24 +7,22 @@ import CardItem from '../../components/CardItem'
 import "antd/dist/antd.css";
 import './index.less'
 import { get, post } from "../../utils/http";
+import { GetQueryString } from "../../utils";
 
 
 const TraderList: FC = () => {
   const { TabPane } = Tabs;
   const { Search } = Input;
   const [list7D, setList7D] = useState<any>([])
-
   const [list30D, setList30D] = useState<any>([])
-
   const [drawdownRate, setDrawdownRate] = useState<any>([])
+  const [tab, setTab] = useState<string>('1')
 
-  const onChange = (key: any) => {
-    console.log(key);
-  };
-
-  const operations = <div className="btn line"><UserSwitchOutlined />我的跟单&nbsp;<ArrowRightOutlined style={{color: '#F7A600' }}/></div>;
   const onSearch = (value: string) => console.log(value);
-
+  const onChange = (key: string) => {
+    setTab(key)
+  };
+  
   const info = async (interval: number, sortKey: string) => {
     const data = await post('/api/tradeTalent/list', { sortKey, interval })
     return data.list
@@ -37,8 +35,7 @@ const TraderList: FC = () => {
       let l = data.sort((a: any, b: any) => a.drawdownRate + b.drawdownRate);
       setDrawdownRate(l)
     })
-
-    
+    GetQueryString('tab') ? onChange('2') : ''
   }, [])
   return (
     <div className="traderlist-page">
@@ -49,7 +46,8 @@ const TraderList: FC = () => {
         <div className="bg"></div>
       </div>
       <div className="content-wrap">
-        <Tabs defaultActiveKey="1" tabBarExtraContent={operations} onChange={onChange}>
+        <Tabs activeKey={tab} tabBarExtraContent={
+          <div className="btn line"><UserSwitchOutlined />我的跟单&nbsp;<ArrowRightOutlined style={{color: '#F7A600' }}/></div>} onChange={onChange}>
           <TabPane tab="SingleMarket" key="1">
             <CardItemLarge
               firstTitle="近7天表现最佳交易员"

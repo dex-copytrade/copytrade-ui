@@ -5,6 +5,7 @@ import { LeftOutlined } from '@ant-design/icons';
 import './index.less'
 import { get } from "../../utils/http";
 import { useLocation } from 'react-router'
+import { hanlderJump, GetQueryString } from '../../utils';
 
 
 const TraderList: FC = () => {
@@ -20,10 +21,6 @@ const TraderList: FC = () => {
     setDate(data)
   }
 
-  const gotoBack= () =>{
-    window.location.href = '/traderlist'
-  }
-
   useEffect(() => {
     getDetail()
   }, [])
@@ -32,7 +29,7 @@ const TraderList: FC = () => {
     <div className="traderdetail-page">
       <Header></Header>
       <div className="content-wrap">
-        <div className="goback fs24 df f1 aic" onClick={gotoBack}><LeftOutlined />交易达人</div>
+        <div className="goback fs24 df f1 aic" onClick={()=>hanlderJump('traderlist')}><LeftOutlined />交易达人</div>
         <Account data={data}></Account>
         <div className="df mt20 pb24">
           <div className="left-wrap br8">
@@ -64,7 +61,7 @@ const TraderList: FC = () => {
           <div className="f1 right-wrap br8">
             <div className="fw bb pad24 pb10 pt10 df aic">
               <div className="f1">获利</div>
-              <a className="btn line small" href="/translog">交易记录</a>
+              <div className="btn line small" onClick={()=> hanlderJump('translog',{id: GetQueryString('id')})}>交易记录</div>
             </div>
           </div>
         </div>

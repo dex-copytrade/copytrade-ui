@@ -7,6 +7,7 @@ import { Tabs} from 'antd';
 import './index.less'
 import { get } from "../../utils/http";
 import { useLocation } from "react-router-dom";
+import { hanlderJump } from "../../utils";
 
 const columns = [
   {
@@ -109,10 +110,7 @@ const TraderList: FC = () => {
     const data = await get('/api/tradeHistory/list')
     // setDate(data)
   }
-  const gotoBack= () =>{
-    window.location.href = '/traderlist'
-  }
-
+  
   const onChange = (key: any) => {
     console.log(key);
   };
@@ -127,7 +125,7 @@ const TraderList: FC = () => {
     <div className="translog-page">
       <Header></Header>
       <div className="content-wrap pb24">
-        <div className="goback fs24 df f1 aic" onClick={gotoBack}><LeftOutlined />交易记录</div>
+        <div className="goback fs24 df f1 aic" onClick={()=>hanlderJump('traderlist')}><LeftOutlined />交易记录</div>
         <div className="br8">
           <Account data={data}></Account>
           <div className="pdtr1624">
