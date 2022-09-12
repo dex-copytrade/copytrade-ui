@@ -5,6 +5,9 @@ import "./index.less";
 import { hanlderJump, format } from "../../utils";
 import { post } from "../../utils/http";
 
+const sleep = (time:number) =>
+new Promise((resolve) => setTimeout(resolve, time * 1000))
+
 export interface ItemProps {
   isOpen: boolean;
   info?: any;
@@ -29,17 +32,25 @@ export const SubModal: FC<ItemProps> = (props) => {
 
   const addSub = async () => {
     const data = await post(' /api/subList/addSub', {account})
+    await sleep(3)
     message.success('订阅成功')
     hanlderJump('traderlist',{tab:'sub'})
   };
   const create = async () => {
-    const data = await post(' /api/subList/create', { 
+    const svgg =/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+    if(svgg.test(subInfo.email)){
+      const data = await post(' /api/subList/create', { 
       ...subInfo, ...{
         account
       }
      })
      message.success('订阅成功')
+     await sleep(3)
     hanlderJump('traderlist',{tab:'sub'})
+    }else {
+      message.error('请输入正确的邮箱地址')
+    }
+    
   };
 
   const onClick = () => {
@@ -108,6 +119,7 @@ export const SubModal: FC<ItemProps> = (props) => {
             <li>手机号</li>
             <li>
               <input
+                disabled
                 placeholder="请输入手机号"
                 onChange={(e) =>
                   setSubInfo({ ...subInfo, ...{ phoneNumber: e.target.value } })
