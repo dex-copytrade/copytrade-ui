@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { get } from "../../utils/http";
@@ -46,6 +47,29 @@ export const CardItem: FC<propsMode> = (props) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  function btnConnectClick() {
+    if(localStorage.getItem('owner')){
+      setIsModalOpen(true)
+    }else {
+      if (!window.solana) {
+        Modal.info({
+          title: '请先安装 phantom 钱包',
+          okText: '去安装',
+          onOk() {
+            window.open('https://phantom.app/')
+          },
+        });
+      }else {
+        Modal.info({
+          title: '请先连接 phantom 钱包',
+          okText: '去连接',
+          onOk() {
+          },
+        });
+      }
+    }
+    
+  }
   return (
     <>
       <div className="br8 asset-wrap pad24">
@@ -56,7 +80,7 @@ export const CardItem: FC<propsMode> = (props) => {
               累计收益总排行&nbsp;<span className="fw c-black">No.03</span>
             </div> */}
           </div>
-          <div className="btn line2 mr16" onClick={() => setIsModalOpen(true)}>
+          <div className="btn line2 mr16" onClick={btnConnectClick}>
             {subType ? '已订阅' : '订阅'}
           </div>
           <div className="btn primary">跟单-开发中</div>

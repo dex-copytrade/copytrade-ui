@@ -62,11 +62,11 @@ const TraderList: FC = () => {
     <div className="traderlist-page">
       <Header></Header>
       <div className="banner-wrap">
-        <Search
+        {/* <Search
           placeholder="Search Wallet Address"
           onSearch={onSearch}
           style={{ width: 200 }}
-        />
+        /> */}
         <div className="title">
           DEX Trader List<p>TOP TRADER</p>
         </div>

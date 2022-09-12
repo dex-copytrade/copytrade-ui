@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import './index.less';
 import { Header, Payload, SIWS } from '@web3auth/sign-in-with-solana';
 import { formatPublicKey } from '../../utils';
+import { Modal } from 'antd';
 
 const HeaderComponents: FC = () => {
   const [publicKey, setPublicKey] = useState('');
@@ -25,7 +26,20 @@ const HeaderComponents: FC = () => {
           signIn();
         });
       } else {
-        alert('请先安装 phantom 钱包');
+        Modal.info({
+          title: '请先安装 phantom 钱包',
+          // content: (
+          //   <div>
+          //     <p>some messages...some messages...</p>
+          //     <p>some messages...some messages...</p>
+          //   </div>
+          // ),
+          okText: '去安装',
+          onOk() {
+            window.open('https://phantom.app/')
+          },
+        });
+        // alert('请先安装 phantom 钱包');
       }
     } catch (error) {
       console.log('User rejected the request.' + error);
