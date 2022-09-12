@@ -67,6 +67,7 @@ export const CardItem: FC<propsMode> = (props) => {
             window.solana.connect().then((resp: any) => {
               const publicKey = resp.publicKey.toString();
               localStorage.setItem('owner', publicKey);
+              window.location.reload()
             });
           },
         });
