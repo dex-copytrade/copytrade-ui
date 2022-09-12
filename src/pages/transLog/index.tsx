@@ -11,79 +11,64 @@ import { hanlderJump } from "../../utils";
 
 const columns = [
   {
-    title: "仓位",
-    dataIndex: "name",
+    title: "币种",
+    dataIndex: "base",
   },
   {
     title: "入场价格",
-    dataIndex: "age",
+    dataIndex: "avgEntryPrice",
+  },
+  {
+    title: "标地价格",
+    dataIndex: "indexPrice",
   },
   {
     title: "合约数量",
-    dataIndex: "address",
+    dataIndex: "basePosition",
   },
   {
-    title: "开仓时间",
-    dataIndex: "address",
+    title: "方向",
+    dataIndex: "side",
   },
-  {
-    title: "未结盈亏",
-    dataIndex: "address",
-  },
-  {
-    title: "操作",
-    dataIndex: "address",
-  },
+  // {
+  //   title: "未结盈亏",
+  //   dataIndex: "address",
+  // },
+  // {
+  //   title: "操作",
+  //   dataIndex: "address",
+  // },
 ];
-const datas = [
+
+const columns1 = [
   {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
+    title: "ID",
+    dataIndex: "takerOrderId",
   },
   {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
+    title: "入场价格",
+    dataIndex: "price",
   },
   {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
+    title: "数量",
+    dataIndex: "quantity",
   },
   {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
+    title: "时间",
+    dataIndex: "loadTimestamp",
   },
   {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
+    title: "方向",
+    dataIndex: "takerSide",
   },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
+  // {
+  //   title: "未结盈亏",
+  //   dataIndex: "address",
+  // },
+  // {
+  //   title: "操作",
+  //   dataIndex: "address",
+  // },
 ];
 
 
@@ -94,6 +79,8 @@ const TraderList: FC = () => {
 
   const [account] = useState<any>(() => location.search.split('=')[1] )
   const [data, setDate] = useState<any>({})
+  const [position, setPosition] = useState<any>([])
+  const [history, setHistory] = useState<any>([])
 
 
   const getDetail = async () => {
@@ -103,12 +90,12 @@ const TraderList: FC = () => {
 
   const getPosition = async () => {
     const data = await get('/api/position/list')
-    // setDate(data)
+    setPosition(data.perpPositions)
   }
 
   const getHistory = async () => {
     const data = await get('/api/tradeHistory/list')
-    // setDate(data)
+    setHistory(data)
   }
   
   const onChange = (key: any) => {
@@ -130,11 +117,11 @@ const TraderList: FC = () => {
           <Account data={data}></Account>
           <div className="pdtr1624">
             <Tabs defaultActiveKey="1" onChange={onChange}>
-              <TabPane tab="当前跟单" key="1">
-                <Table columns={columns} data={datas} key="1"></Table>
+              <TabPane tab="当前仓位" key="1">
+                <Table columns={columns} data={position} key="1-1"></Table>
               </TabPane>
               <TabPane tab="历史跟单" key="2">
-                <Table columns={columns} data={datas}  key="2"></Table>
+                <Table columns={columns1} data={history}  key="2-2"></Table>
               </TabPane>
             </Tabs>
           </div>

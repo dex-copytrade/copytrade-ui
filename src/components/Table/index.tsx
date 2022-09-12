@@ -18,6 +18,7 @@ const T: FC<P> = (props) => {
   
     <Table
       size="small"
+      key={Date.now()}
       columns={columns}
       dataSource={data}
       onChange={onChange}

@@ -13,14 +13,23 @@ export interface propsMode {
   secondTitle?: string
   isHasMore?: boolean
   list?: Array<any>
+  unSubList?: any
 }
 
 export const CardItem: FC<propsMode> = (props) => {
-  const { firstTitle, secondTitle, isHasMore = true, list} = props
+  const { firstTitle, secondTitle, isHasMore = true, list, unSubList} = props
   const [isMore, setIsMore] = useState(false)
 
   const handleShowAll = () =>{
     setIsMore(true)
+  }
+
+  const onClick = (item: any) => {
+    if(isHasMore) {
+      hanlderJump('traderdetail',{id: item.account})
+    } else {
+      unSubList?.(item.account)
+    }
   }
 
   const listItme = () => {
@@ -41,7 +50,9 @@ export const CardItem: FC<propsMode> = (props) => {
             </ul>
           </div>
         </div>
-        <div className="btn primary large mt24" onClick={() => hanlderJump('traderdetail',{id: item.account})}>Follow</div>
+        <div className="btn primary large mt24" onClick={() => onClick(item)}>{
+          isHasMore ? 'Follow' : ' Cancel Follow'
+        }</div>
       </div>
       )
     })
