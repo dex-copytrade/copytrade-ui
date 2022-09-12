@@ -64,6 +64,10 @@ export const CardItem: FC<propsMode> = (props) => {
           title: '请先连接 phantom 钱包',
           okText: '去连接',
           onOk() {
+            window.solana.connect().then((resp: any) => {
+              const publicKey = resp.publicKey.toString();
+              localStorage.setItem('owner', publicKey);
+            });
           },
         });
       }
