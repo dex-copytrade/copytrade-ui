@@ -19,7 +19,7 @@ const columns = [
     dataIndex: "avgEntryPrice",
   },
   {
-    title: "标地价格",
+    title: "标的价格",
     dataIndex: "indexPrice",
   },
   {
